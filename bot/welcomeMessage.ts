@@ -39,11 +39,11 @@ export function generateWelcomeMessage(user: User): string {
   const firstName = user.first_name ? escapeMarkdown(user.first_name) : 'User';
   const userId = user.id;
 
-  const message = `🎉 Congratulations, ${firstName}!
+  const message = `Welcome ${firstName}! 👋
 
-Welcome to our community! We're glad to have you here.
+I AM GEORGE, THE DEVELOPER. I CAN HELP YOU IN CREATING ANY WEBSITE, APPS, POS AND ANY INTEGRATIONS OF STK MPESA PUSH. ALSO CREDIT/MASTERCARD PAYMENTS GATEWAYS.
 
-Please use the buttons below to get started.`;
+Feel free to reach out using the buttons below!`;
 
   return message;
 }
@@ -56,11 +56,11 @@ Please use the buttons below to get started.`;
 export function generateWelcomeMessageHtml(user: User): string {
   const firstName = user.first_name ? escapeHtml(user.first_name) : 'User';
 
-  const message = `🎉 Congratulations, <b>${firstName}</b>!
+  const message = `Welcome <b>${firstName}</b>! 👋
 
-Welcome to our community! We're glad to have you here.
+I AM <b>GEORGE</b>, THE DEVELOPER. I CAN HELP YOU IN CREATING ANY WEBSITE, APPS, POS AND ANY INTEGRATIONS OF STK MPESA PUSH. ALSO CREDIT/MASTERCARD PAYMENTS GATEWAYS.
 
-Please use the buttons below to get started.`;
+Feel free to reach out using the buttons below!`;
 
   return message;
 }
@@ -74,11 +74,11 @@ export function generateWelcomeMessageWithMention(user: User): string {
   const firstName = user.first_name ? escapeMarkdown(user.first_name) : 'User';
   const userId = user.id;
 
-  const message = `🎉 Congratulations, [${firstName}](tg://user?id=${userId})!
+  const message = `Welcome [${firstName}](tg://user?id=${userId})! 👋
 
-Welcome to our community! We're glad to have you here.
+I AM GEORGE, THE DEVELOPER. I CAN HELP YOU IN CREATING ANY WEBSITE, APPS, POS AND ANY INTEGRATIONS OF STK MPESA PUSH. ALSO CREDIT/MASTERCARD PAYMENTS GATEWAYS.
 
-Please use the buttons below to get started.`;
+Feel free to reach out using the buttons below!`;
 
   return message;
 }
