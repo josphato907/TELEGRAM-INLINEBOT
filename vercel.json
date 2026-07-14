@@ -1,0 +1,36 @@
+{
+  "projectSettings": {
+    "framework": "nextjs",
+    "buildCommand": "npm run build",
+    "devCommand": "npm run dev"
+  },
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "@telegram_bot_token",
+    "ADMIN_USERNAME": "@admin_username",
+    "GROUP_INVITE_LINK": "@group_invite_link",
+    "DEBUG": "@debug"
+  },
+  "functions": {
+    "app/api/**": {
+      "maxDuration": 60
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/telegram/webhook",
+      "dest": "/api/telegram/webhook",
+      "methods": ["POST", "GET"]
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/telegram/webhook",
+      "headers": [
+        {
+          "key": "X-Powered-By",
+          "value": "Telegram Bot"
+        }
+      ]
+    }
+  ]
+}
