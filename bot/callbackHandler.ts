@@ -24,8 +24,8 @@ export async function handleCallbackQuery(ctx: Context): Promise<void> {
     }
 
     switch (callbackData) {
-      case 'verify_user':
-        await handleVerifyUser(ctx);
+      case 'invite_friends':
+        await handleInviteFriends(ctx);
         break;
 
       default:
@@ -45,39 +45,38 @@ export async function handleCallbackQuery(ctx: Context): Promise<void> {
 }
 
 /**
- * Handle the "Verify Yourself" button click
+ * Handle the "INVITE FRIENDS" button click
+ * Sends the group invitation link to the user
  * @param ctx - Telegraf context
  */
-async function handleVerifyUser(ctx: Context): Promise<void> {
+async function handleInviteFriends(ctx: Context): Promise<void> {
   try {
     const userId = ctx.from?.id;
     const firstName = ctx.from?.first_name || 'User';
 
     if (botConfig.debug) {
-      console.log(`[callbackHandler] Verify user clicked by ${firstName} (ID: ${userId})`);
+      console.log(`[callbackHandler] Invite friends clicked by ${firstName} (ID: ${userId})`);
     }
 
-    // Send acknowledgment notification
-    await ctx.answerCbQuery(`Hello ${firstName}! Verification process initiated.`, {
+    // Send acknowledgment notification (toast at bottom)
+    await ctx.answerCbQuery('Here is your group link! Share it with your friends.', {
       show_alert: false,
     });
 
-    // Send a follow-up message with verification instructions
-    const verificationMessage = `Hi ${firstName}! 🔐\n\nYour verification process has been initiated.\n\nPlease check your DMs or wait for admin approval.`;
+    // Send the group invitation link
+    const inviteMessage = `Hi ${firstName}! 👋\n\nHere is our group invitation link:\n\n${botConfig.groupInviteLink}\n\nShare it with your friends and let them join our community!`;
 
-    await ctx.telegram.sendMessage(userId, verificationMessage);
+    await ctx.telegram.sendMessage(userId, inviteMessage);
 
-    // Optional: Send notification to admins (implement as needed)
-    // You can log this to a channel or send to admin group
     if (botConfig.debug) {
-      console.log(`[callbackHandler] Verification initiated for user ${userId}`);
+      console.log(`[callbackHandler] Invitation link sent to user ${userId}`);
     }
   } catch (error) {
-    console.error('[callbackHandler] Error in handleVerifyUser:', error);
+    console.error('[callbackHandler] Error in handleInviteFriends:', error);
     try {
-      await ctx.answerCbQuery('Error processing verification', { show_alert: true });
+      await ctx.answerCbQuery('Error processing your request', { show_alert: true });
     } catch (e) {
-      console.error('[callbackHandler] Error answering verification callback:', e);
+      console.error('[callbackHandler] Error answering callback:', e);
     }
   }
 }

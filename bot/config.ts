@@ -20,7 +20,10 @@ export const botConfig = {
   websiteUrl: process.env.WEBSITE_URL || 'https://example.com',
   channelUrl: process.env.CHANNEL_URL || 'https://t.me/examplechannel',
   adminUrl: process.env.ADMIN_URL || 'https://t.me/exampleadmin',
-  adminUsername: process.env.ADMIN_USERNAME || 'exampleadmin',
+  adminUsername: process.env.ADMIN_USERNAME || 'rosaharveys',
+  
+  // Group invitation link for the INVITE FRIENDS button
+  groupInviteLink: process.env.GROUP_INVITE_LINK || 'https://t.me/+FqcBQjNAaRdhMzlk',
 
   // Enable debug logging
   debug: process.env.DEBUG === 'true',
