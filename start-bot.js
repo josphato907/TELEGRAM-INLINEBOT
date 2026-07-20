@@ -96,18 +96,27 @@ bot.on('callback_query', async (ctx) => {
     const callbackData = ctx.callbackQuery.data;
     const userId = ctx.from.id;
     const firstName = ctx.from.first_name || 'User';
+    const chatId = ctx.chat?.id;
 
     if (callbackData === 'invite_friends') {
       // Show notification
-      await ctx.answerCbQuery('Here is your group link! Share it with your friends.', {
+      await ctx.answerCbQuery('Group link copied! Share it with your friends.', {
         show_alert: false,
       });
 
-      // Send the group invitation link
-      const inviteMessage = `Hi ${firstName}! 👋\n\nHere is our group invitation link:\n\n${groupInviteLink}\n\nShare it with your friends and let them join our community!`;
-
-      await ctx.telegram.sendMessage(userId, inviteMessage);
-      console.log(`[Bot] Invitation link sent to ${firstName} (ID: ${userId})`);
+      // Try to send private message, if it fails, send it in the group
+      try {
+        const inviteMessage = `Hi ${firstName}! 👋\n\nHere is our group invitation link:\n\n${groupInviteLink}\n\nShare it with your friends and let them join our community!`;
+        await ctx.telegram.sendMessage(userId, inviteMessage);
+        console.log(`[Bot] Invitation link sent to ${firstName} (ID: ${userId}) via DM`);
+      } catch (dmError) {
+        // If DM fails, send it as a reply in the group
+        if (chatId) {
+          const groupInviteMessage = `${firstName}, here's the group invite link for you to share:\n\n${groupInviteLink}`;
+          await ctx.telegram.sendMessage(chatId, groupInviteMessage);
+          console.log(`[Bot] Invitation link sent to ${firstName} in group (DM failed: ${dmError.message})`);
+        }
+      }
     } else {
       await ctx.answerCbQuery('Unknown action', { show_alert: false });
     }
