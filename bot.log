@@ -1,4 +1,4 @@
-◇ injected env (9) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (9) from .env // tip: ⌘ enable debugging { debug: true }
 ========================================
 🤖 Telegram Welcome Bot is LIVE!
 ========================================
@@ -8,5 +8,6 @@ Group Link: https://t.me/+FqcBQjNAaRdhMzlk
 
 Listening for new members...
 ========================================
-[Bot] Welcome message sent to Lhuvy (ID: 7957006593)
-[Bot] Welcome message sent to Joiner🧙 (ID: 7888480798)
+[Bot] Welcome message sent to Mark (ID: 8475930767)
+[Bot] Welcome message sent to Vic kiprono (ID: 421890944)
+[Bot] Error handling callback query: 403: Forbidden: bot can't initiate conversation with a user
