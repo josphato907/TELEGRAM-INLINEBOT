@@ -1,4 +1,4 @@
-◇ injected env (9) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (9) from .env // tip: ⌘ override existing { override: true }
 ========================================
 🤖 Telegram Welcome Bot is LIVE!
 ========================================
@@ -8,6 +8,3 @@ Group Link: https://t.me/+FqcBQjNAaRdhMzlk
 
 Listening for new members...
 ========================================
-[Bot] Welcome message sent to Mark (ID: 8475930767)
-[Bot] Welcome message sent to Vic kiprono (ID: 421890944)
-[Bot] Error handling callback query: 403: Forbidden: bot can't initiate conversation with a user
